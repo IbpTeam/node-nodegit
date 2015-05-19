@@ -82,16 +82,17 @@ var dependencies = Q.allSettled([
 
 // Successfully found all dependencies.  First step is to clean the vendor
 // directory.
-.then(function() {
-  console.info('[nodegit] Removing vendor/libgit2.');
 
-  return Q.ninvoke(rimraf, null, paths.libgit2);
+.then(function() {
+  console.info('(For the bad network, we ignore this step)[nodegit] Removing vendor/libgit2.');
+
+  //return Q.ninvoke(rimraf, null, paths.libgit2);
 })
 
 // Now fetch the libgit2 source from GitHub.
 .then(function() {
-  console.info('[nodegit] Fetching vendor/libgit2.');
-
+  console.info('(For the bad network, we ignore this step)[nodegit] Fetching vendor/libgit2.');
+/*
   var url = 'https://github.com/libgit2/libgit2/tarball/' + pkg.libgit2;
   
   var extract = tar.Extract({
@@ -103,7 +104,9 @@ var dependencies = Q.allSettled([
   var expand = request.get(url).pipe(zlib.createUnzip()).pipe(extract);
 
   return Q.ninvoke(expand, 'on', 'end');
+*/
 })
+
 
 // Configure the native module using node-gyp.
 .then(function() {
